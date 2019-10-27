@@ -138,7 +138,7 @@ public class LegendRestController {
 		var pageable = PageRequest.of(page, size, Sort.by(Direction.DESC, "eventdate"));
 		List<legend> legends = legendElasticRepository.findByFirstReleaseDateBefore(firstReleaseDate.getTime(), pageable).getContent();
 
-		// Use this because uuid sometimes change version by some browser:
+		// Use this because uuid sometimes change version and format by some browser:(need to find a better way to validation uuid)
 		legends.forEach(legend -> {
 			legend.setUuid(legend.getUuid());
 			System.out.println(legend.getUuid());
@@ -146,12 +146,15 @@ public class LegendRestController {
 		legendElasticRepository.saveAll(legends);
 
 		// This is a temporarily function for use before the spring-data-Elasticserarch filter been set.
-		legends.forEach(legend -> {
-			legend.setDetail(null);
-			System.out.println(legend.getUuid());
+		List<legend> legendsTemps = legends;
+		legendsTemps.forEach(legendtemp -> {
+			legendtemp.setDetail(null);
+			System.out.println(legendtemp.getUuid());
 		});
 
-		return legends;
+		return legendsTemps;
+
+		//return legends;
 	}
 
 
@@ -160,15 +163,11 @@ public class LegendRestController {
 			@RequestParam(name = "eventdate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date firstReleaseDate,
 			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "25") int size) {
 		var pageable = PageRequest.of(page, size, Sort.by(Direction.ASC, "eventdate"));
-		List<legend> legends = legendElasticRepository.findByFirstReleaseDateAfter(firstReleaseDate.getTime(), pageable).getContent();
-		legends.forEach(legend -> {
-			legend.setDetail(null);
-			legend.setUuid(legend.getUuid());
-			System.out.println(legend.getUuid());
-		});
-		legendElasticRepository.saveAll(legends);
 
-		// Use this because uuid sometimes change version by some browser:
+		List<legend> legends = legendElasticRepository.findByFirstReleaseDateAfter(firstReleaseDate.getTime(), pageable).getContent();
+
+
+		// Use this because uuid sometimes change version and format by some browser:(need to find a better way to validation uuid)
 		legends.forEach(legend -> {
 			legend.setUuid(legend.getUuid());
 			System.out.println(legend.getUuid());
@@ -176,12 +175,15 @@ public class LegendRestController {
 		legendElasticRepository.saveAll(legends);
 
 		// This is a temporarily function for use before the spring-data-Elasticserarch filter been set.
-		legends.forEach(legend -> {
-			legend.setDetail(null);
-			System.out.println(legend.getUuid());
+		List<legend> legendsTemps = legends;
+		legendsTemps.forEach(legendtemp -> {
+			legendtemp.setDetail(null);
+			System.out.println(legendtemp.getUuid());
 		});
 
-		return legends;
+		return legendsTemps;
+
+		//return legends;
 	}
 
 	@GetMapping(path = "/legends/datebetween")
@@ -194,7 +196,8 @@ public class LegendRestController {
 
 		List<legend> legends =  legendElasticRepository.findByFirstReleaseDateBetween(firstReleaseDateStart.getTime(),firstReleaseDateEnd.getTime(), pageable).getContent();
 
-		// Use this because uuid sometimes change version by some browser:
+
+		// Use this because uuid sometimes change version and format by some browser:(need to find a better way to validation uuid)
 		legends.forEach(legend -> {
 			legend.setUuid(legend.getUuid());
 			System.out.println(legend.getUuid());
@@ -202,12 +205,15 @@ public class LegendRestController {
 		legendElasticRepository.saveAll(legends);
 
 		// This is a temporarily function for use before the spring-data-Elasticserarch filter been set.
-		legends.forEach(legend -> {
-			legend.setDetail(null);
-			System.out.println(legend.getUuid());
+		List<legend> legendsTemps = legends;
+		legendsTemps.forEach(legendtemp -> {
+			legendtemp.setDetail(null);
+			System.out.println(legendtemp.getUuid());
 		});
 
-		return legends;
+		return legendsTemps;
+
+		//return legends;
 	}
 
 }
