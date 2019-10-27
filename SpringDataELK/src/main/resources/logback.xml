@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+
+
+	<property name="log_home" value="logs" />
+
+
+
+	<property name="log_pattern"
+		value="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{40} - %msg%n" />
+
+	<!-- Append to file named paymentcanada-search-elk.log, generated daily (file from
+		previous day will be renamed as paymentcanada-search-elk.[date].log. If the log -->
+	<appender name="file"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log_home}/paymentcanada-search-elk.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log_home}/paymentcanada-search-elk.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>5MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>${log_pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- append to console -->
+	<appender name="stdout"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>
+				${log_pattern}
+			</pattern>
+		</layout>
+	</appender>
+
+
+
+	<logger name="com.paymentcanada" level="info" additivity="false">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</logger>
+
+</configuration>
