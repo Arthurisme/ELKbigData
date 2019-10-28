@@ -6,8 +6,8 @@ import {FormControl} from '@angular/forms';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatOption} from '@angular/material/core';
 
-import { Legend } from '../Legend.model';
-import { LegendService } from '../Legend.service';
+import { Legend } from '../legend.model';
+import { LegendService } from '../legend.service';
 
 
 // Depending on whether rollup is used, moment needs to be imported differently.
@@ -36,9 +36,9 @@ export interface Range {
 
 
 @Component({
-  selector: 'app-Legend-list',
-  templateUrl: './Legend-list.component.html',
-  styleUrls: ['./Legend-list.component.css'],
+  selector: 'app-legend-list',
+  templateUrl: './legend-list.component.html',
+  styleUrls: ['./legend-list.component.css'],
   providers: [
     // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
     // application's root module. We provide it at the component level here, due to limitations of
@@ -47,12 +47,12 @@ export interface Range {
 })
 export class LegendListComponent implements OnInit, OnDestroy {
 
-  constructor(private LegendService: LegendService,
+  constructor(private legendService: LegendService,
               private router: Router,
               private dataStorageService: DataStorageService,
               private route: ActivatedRoute) {
   }
-  Legends: Legend[];
+  legends: Legend[];
   subscription: Subscription;
   events: string[] = [];
   startDateTime
@@ -95,13 +95,13 @@ export class LegendListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.LegendService.LegendsChanged
+    this.subscription = this.legendService.LegendsChanged
       .subscribe(
-        (Legends: Legend[]) => {
-          this.Legends = Legends;
+        (legends: Legend[]) => {
+          this.legends = Legends;
         }
       );
-    this.Legends = this.LegendService.getLegends();
+    this.legends = this.legendService.getLegends();
   }
 
   onNewLegend() {

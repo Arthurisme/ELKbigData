@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { Legend } from './Legend.model';
+import { Legend } from './legend.model';
 import { Ingredient } from '../shared/ingredient.model';
 
 
 @Injectable()
 export class LegendService {
-  LegendsChanged = new Subject<Legend[]>();
-  LegendChanged = new Subject<Legend>();
+  legendsChanged = new Subject<Legend[]>();
+  legendChanged = new Subject<Legend>();
 
   // private Legends: Legend[] = [
   //   new Legend(
@@ -24,18 +24,18 @@ export class LegendService {
   //     [new Ingredient('Buns', 2), new Ingredient('Meat', 1)]
   //   )
   // ];
-  private Legends: Legend[] = [];
+  private legends: Legend[] = [];
   private currentClickedLegend: Legend;
 
   constructor() {}
 
-  setLegends(Legends: Legend[]) {
+  setLegends(legends: Legend[]) {
 
-    console.log('data 2:', Legends );
+    console.log('data 2:', legends );
 
-    this.Legends = Legends;
+    this.legends = legends;
 
-    this.LegendsChanged.next(this.Legends.slice());
+    this.legendsChanged.next(this.legends.slice());
   }
 
   setLegend(currentClickedLegend: Legend) {
@@ -44,11 +44,11 @@ export class LegendService {
 
     this.currentClickedLegend = currentClickedLegend;
 
-    this.LegendChanged.next(this.currentClickedLegend);
+    this.legendChanged.next(this.currentClickedLegend);
   }
 
   getLegends() {
-    return this.Legends.slice();
+    return this.legends.slice();
   }
 
   getLegend(index: string) {
@@ -61,14 +61,14 @@ export class LegendService {
 
 
 
-  addLegend(Legend: Legend) {
-    this.Legends.push(Legend);
-    this.LegendsChanged.next(this.Legends.slice());
+  addLegend(legend: Legend) {
+    this.legends.push(legend);
+    this.legendsChanged.next(this.legends.slice());
   }
 
   updateLegend(index: string, newLegend: Legend) {
-    this.Legends[index] = newLegend;
-    this.LegendsChanged.next(this.Legends.slice());
+    this.legends[index] = newLegend;
+    this.legendsChanged.next(this.legends.slice());
   }
 
 

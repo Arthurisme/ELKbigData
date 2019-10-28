@@ -5,17 +5,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { LegendsComponent } from './Legends/Legends.component';
-import { LegendListComponent } from './Legends/Legend-list/Legend-list.component';
-import { LegendDetailComponent } from './Legends/Legend-detail/Legend-detail.component';
-import { LegendItemComponent } from './Legends/Legend-list/Legend-item/Legend-item.component';
+import { LegendsComponent } from './legends/legends.component';
+import { LegendListComponent } from './legends/legend-list/legend-list.component';
+import { LegendDetailComponent } from './legends/legend-detail/legend-detail.component';
+import { LegendItemComponent } from './legends/legend-list/legend-item/legend-item.component';
 
 import { DropdownDirective } from './shared/dropdown.directive';
 
 import { AppRoutingModule } from './app-routing.module';
-import { LegendStartComponent } from './Legends/Legend-start/Legend-start.component';
+import { LegendStartComponent } from './legends/legend-start/legend-start.component';
 
-import { LegendService } from './Legends/Legend.service';
+import { LegendService } from './legends/legend.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material';
 import { MaterialModule } from '../material-module';

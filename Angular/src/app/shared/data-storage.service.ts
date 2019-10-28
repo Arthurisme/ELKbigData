@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map, tap} from 'rxjs/operators';
 
-import {Legend} from '../Legends/Legend.model';
-import {LegendService} from '../Legends/Legend.service';
+import {Legend} from '../legends/legend.model';
+import {LegendService} from '../legends/legend.service';
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService {
-  constructor(private http: HttpClient, private LegendService: LegendService) {
+  constructor(private http: HttpClient, private legendService: LegendService) {
 
   }
 
@@ -30,11 +30,11 @@ export class DataStorageService {
 
 
   storeLegends() {
-    const Legends = this.LegendService.getLegends();
+    const legends = this.legendService.getlegends();
     this.http
       .put(
-        'https://ng-course-Legend-book-65f10.firebaseio.com/Legends.json',
-        Legends
+        'https://ng-course-legend-book-65f10.firebaseio.com/legends.json',
+        legends
       )
       .subscribe(response => {
         console.log(response);
@@ -78,8 +78,8 @@ export class DataStorageService {
             };
           });
         }),
-        tap(Legends => {
-          this.LegendService.setLegends(Legends);
+        tap(legends => {
+          this.legendService.setLegends(legends);
         })
       );
   }
@@ -98,7 +98,7 @@ export class DataStorageService {
           return legend;
         }),
         tap(legend => {
-          this.LegendService.setLegend(legend);
+          this.legendService.setLegend(legend);
         })
       );
   }
