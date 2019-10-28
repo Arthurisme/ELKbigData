@@ -4,13 +4,11 @@
   routerLinkActive="active"
   class="list-group-item clearfix">
   <div class="pull-left">
-    <h4 class="list-group-item-heading">{{ recipe.type }}</h4>
-    <h4 class="list-group-item-heading">{{ recipe.summary }}</h4>
-    <h4 class="list-group-item-heading">{{ recipe.eventdate }}</h4>
-    <h4 class="list-group-item-heading">{{ recipe.size }}</h4>
-    <h4 class="list-group-item-heading">{{ recipe.uuid }}</h4>
-    <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
-    <p class="list-group-item-text">{{ recipe.description }}</p>
+    <h4 class="list-group-item-heading">Type: {{ recipe.type }}</h4>
+    <p class="list-group-item-heading">Summary: {{ recipe.summary }}</p>
+    <p class="list-group-item-heading">Event Date:{{ recipe.eventdate }}</p>
+    <p class="list-group-item-heading">Size: {{ recipe.size }}</p>
+    <p class="list-group-item-heading">UUID: {{ recipe.uuid }}</p>
     <a routerLink="/recipes/{{2}}" >  Click to see Detail  </a>
   </div>
   <span class="pull-right">

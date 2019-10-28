@@ -1,6 +1,13 @@
 <div class="row">
-  <div class="col-xs-12">
+
+  <div class="col-xs-4">
+    <button class="btn btn-success" (click)="goPreviousPage()">Previous Page</button>
+  </div>
+  <div class="col-xs-4">
     <button class="btn btn-success" (click)="onFetchData()">Fetch Data</button>
+  </div>
+  <div class="col-xs-4">
+    <button class="btn btn-success" (click)="goNextPage()">Next Page</button>
   </div>
 </div>
 <hr>
@@ -13,7 +20,7 @@
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
 
-<div class="example-events">
+<div class="example-events" hidden="">
   <div *ngFor="let e of events">{{e}}</div>
 </div>
 

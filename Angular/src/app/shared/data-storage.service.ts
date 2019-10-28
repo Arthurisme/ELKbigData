@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
-import { Recipe } from '../recipes/recipe.model';
-import { RecipeService } from '../recipes/recipe.service';
+import {Recipe} from '../recipes/recipe.model';
+import {RecipeService} from '../recipes/recipe.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class DataStorageService {
   constructor(private http: HttpClient, private recipeService: RecipeService) {
 
@@ -13,9 +13,9 @@ export class DataStorageService {
 
 
   //HttpHeaders headers1 = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
-    headers1 = new  HttpHeaders().set('Access-Control-Allow-Origin', 'localhost');
+  headers1 = new HttpHeaders().set('Access-Control-Allow-Origin', 'localhost');
 
-   httpOptions = {
+  httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
@@ -41,22 +41,35 @@ export class DataStorageService {
       });
   }
 
-  fetchRecipes() {
+  fetchRecipes(startDate: string, endDate: string, pageNumber?: number) {
+
+    if(startDate === undefined || endDate === undefined){
+      return ;
+    }
 
 
     //return this.http.get('http://localhost:8001/api/welcome', httpOptions);
     //return this.http.get('http://localhost:8001/api/legend/v1/legends/a/a');
 
-    let startDate = '2011-06-01';
-    let endDate = '2013-08-01';
+    // let startDate = '2011-06-01';
+    // let endDate = '2013-08-01';
+
+    var urlString;
+
+    if (pageNumber === null || pageNumber === undefined) {
+      urlString = 'http://localhost:8001/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate;
+
+    } else {
+      urlString = 'http://localhost:8001/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate + '&page=' + pageNumber + '&size=25';
+    }
+    console.log('urlString:', urlString);
+
 
     return this.http
-      .get<Recipe[]>(
-        'http://localhost:8001/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate
-      )
+      .get<Recipe[]>(urlString)
       .pipe(
         map(recipes => {
-          console.log('data:', recipes );
+          console.log('data:', recipes);
           return recipes.map(recipe => {
             return {
               ...recipe,
@@ -73,16 +86,13 @@ export class DataStorageService {
   fetchRecipe(uuid: string) {
 
 
-
-
-
     return this.http
       .get<Recipe>(
         'http://localhost:8001/api/legend/v1/legends/' + uuid
       )
       .pipe(
         map(recipe => {
-          console.log('data:', recipe );
+          console.log('data:', recipe);
           return recipe;
         }),
         tap(recipe => {

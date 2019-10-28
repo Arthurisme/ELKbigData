@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
+
 
 @Injectable()
 export class RecipeService {
@@ -27,7 +27,7 @@ export class RecipeService {
   private recipes: Recipe[] = [];
   private currentClickedRecipe: Recipe;
 
-  constructor(private slService: ShoppingListService) {}
+  constructor() {}
 
   setRecipes(recipes: Recipe[]) {
 
@@ -59,9 +59,7 @@ export class RecipeService {
     return this.currentClickedRecipe;
   }
 
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.slService.addIngredients(ingredients);
-  }
+
 
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
@@ -73,8 +71,5 @@ export class RecipeService {
     this.recipesChanged.next(this.recipes.slice());
   }
 
-  deleteRecipe(index: string) {
-    // this.recipes.splice(index, 1);
-    // this.recipesChanged.next(this.recipes.slice());
-  }
+
 }

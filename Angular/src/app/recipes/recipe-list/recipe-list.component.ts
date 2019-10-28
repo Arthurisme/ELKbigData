@@ -55,14 +55,16 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
   subscription: Subscription;
   events: string[] = [];
-  startDateTime;
-  endDateTime;
+  startDateTime
+  startDate;
+  endDate;
   range;
   ranges: Range[] = [
     {value: 1, viewValue: 'Week'},
     {value: 2, viewValue: 'Month'},
     {value: 3, viewValue: 'Quarter'}
   ];
+   pageCurrent = 0;
 
   // date = new FormControl(moment());
 
@@ -77,6 +79,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
     this.events.push(`${type}: ${event.value}`);
     this.startDateTime = event.value;
+    console.log('startDateTime event', this.startDateTime);
+
   }
 
   onSelectRange(event: MatSelectChange) {
@@ -134,7 +138,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     }else if(this.range === 3){
 
 
-      var date = new Date();
+      var date = new Date(this.startDateTime);
       var quarter = Math.floor((date.getMonth() / 3));
       var firstDate = new Date(date.getFullYear(), quarter * 3, 1);
       var endDate = new Date(firstDate.getFullYear(), firstDate.getMonth() + 3, 0);
@@ -144,11 +148,51 @@ export class RecipeListComponent implements OnInit, OnDestroy {
       console.log('onSelectRange:endDateTime', endDatel);
     }
 
+    // format date to yyyy-mm-dd
+    var startDatefl = new Date(startDatel);
+     var month = '' + (startDatefl.getMonth() + 1);
+     var day = '' + startDatefl.getDate();
+     var year = startDatefl.getFullYear();
+
+     if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    var startDatef =  [year, month, day].join('-');
+
+    var endDatefl = new Date(endDatel);
+    var month = '' + (endDatefl.getMonth() + 1);
+    var day = '' + endDatefl.getDate();
+    var year = endDatefl.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    var endDatef =  [year, month, day].join('-');
 
 
+    this.startDate= startDatef;
+    this.endDate= endDatef;
 
 
-    this.dataStorageService.fetchRecipes().subscribe();
+    console.log('onSelectRange:startDatef', startDatef);
+    console.log('onSelectRange:endDateTime', endDatef);
+
+
+    this.dataStorageService.fetchRecipes(startDatef, endDatef).subscribe();
+  }
+  goPreviousPage(){
+    if(this.pageCurrent >=1){
+      this.dataStorageService.fetchRecipes(this.startDate, this.endDate, this.pageCurrent - 1).subscribe();
+    }
+
+  }
+
+  goNextPage(){
+    this.dataStorageService.fetchRecipes(this.startDate, this.endDate, this.pageCurrent + 1).subscribe();
   }
 
   ngOnDestroy() {
