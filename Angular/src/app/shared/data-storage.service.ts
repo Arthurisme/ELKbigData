@@ -57,10 +57,12 @@ export class DataStorageService {
     var urlString;
 
     if (pageNumber === null || pageNumber === undefined) {
-      urlString = 'http://localhost:8001/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate;
+      //urlString = 'http://localhost:8001/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate;
+      urlString = 'http://3.231.38.61:8080/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate;
 
     } else {
-      urlString = 'http://localhost:8001/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate + '&page=' + pageNumber + '&size=25';
+      //urlString = 'http://localhost:8001/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate + '&page=' + pageNumber + '&size=25';
+      urlString = 'http://3.231.38.61:8080/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate + '&page=' + pageNumber + '&size=25';
     }
     console.log('urlString:', urlString);
 
@@ -68,12 +70,11 @@ export class DataStorageService {
     return this.http
       .get<Legend[]>(urlString)
       .pipe(
-        map(Legends => {
-          console.log('data:', Legends);
-          return Legends.map(Legend => {
+        map(legends => {
+          console.log('data:', legends);
+          return legends.map(legend => {
             return {
-              ...Legend,
-              ingredients: Legend.ingredients ? Legend.ingredients : []
+              ...legend
             };
           });
         }),
@@ -88,15 +89,16 @@ export class DataStorageService {
 
     return this.http
       .get<Legend>(
-        'http://localhost:8001/api/legend/v1/legends/' + uuid
+       // 'http://localhost:8001/api/legend/v1/legends/' + uuid
+    'http://3.231.38.61:8080/api/legend/v1/legends/' + uuid
       )
       .pipe(
-        map(Legend => {
-          console.log('data:', Legend);
-          return Legend;
+        map(legend => {
+          console.log('data:', legend);
+          return legend;
         }),
-        tap(Legend => {
-          this.LegendService.setLegend(Legend);
+        tap(legend => {
+          this.LegendService.setLegend(legend);
         })
       );
   }
