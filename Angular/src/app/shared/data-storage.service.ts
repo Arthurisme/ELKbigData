@@ -11,6 +11,24 @@ export class DataStorageService {
 
   }
 
+
+  //HttpHeaders headers1 = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+    headers1 = new  HttpHeaders().set('Access-Control-Allow-Origin', 'localhost');
+
+   httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+
+      'Access-Control-Allow-Methods': 'POST, GET, PUT, OPTIONS, DELETE',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      'Access-Control-Max-Age': '3600',
+
+      'Access-Control-Allow-Credentials': 'true'
+    })
+  };
+
+
   storeRecipes() {
     const recipes = this.recipeService.getRecipes();
     this.http
@@ -24,30 +42,17 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    //HttpHeaders headers1 = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
-    const  headers1 = new  HttpHeaders().set('Access-Control-Allow-Origin', 'localhost');
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-
-        'Access-Control-Allow-Methods': 'POST, GET, PUT, OPTIONS, DELETE',
-        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-        'Access-Control-Max-Age': '3600',
-
-        'Access-Control-Allow-Credentials': 'true'
-      })
-    };
 
 
     //return this.http.get('http://localhost:8001/api/welcome', httpOptions);
     //return this.http.get('http://localhost:8001/api/legend/v1/legends/a/a');
 
+    let startDate = '2011-06-01';
+    let endDate = '2013-08-01';
 
     return this.http
       .get<Recipe[]>(
-        'http://localhost:8001/api/legend/v1/legends/datebetween?startdate=2011-06-01&enddate=2013-08-01'
+        'http://localhost:8001/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate
       )
       .pipe(
         map(recipes => {
