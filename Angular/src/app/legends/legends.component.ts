@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-Legends',
-  templateUrl: './Legends.component.html',
-  styleUrls: ['./Legends.component.css']
+  selector: 'app-legends',
+  templateUrl: './legends.component.html',
+  styleUrls: ['./legends.component.css']
 })
 export class LegendsComponent implements OnInit {
 
