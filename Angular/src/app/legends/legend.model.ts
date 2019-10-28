@@ -10,17 +10,18 @@ export class Legend {
 
 
 
-  public name: string;
 
-  public description: string;
-  public imagePath: string;
-  public ingredients: Ingredient[];
 
-  constructor(summary: string, name: string, desc: string, imagePath: string, ingredients: Ingredient[]) {
+
+
+  constructor(type: string, size: string, uuid: string, eventdate: string, detail: string, summary: string) {
     this.summary = summary;
-    this.name = name;
-    this.description = desc;
-    this.imagePath = imagePath;
-    this.ingredients = ingredients;
+    this.type = type;
+    this.size = size;
+    this.uuid = uuid;
+    this.eventdate = eventdate;
+    this.detail = detail;
+    this.summary = summary;
+
   }
 }

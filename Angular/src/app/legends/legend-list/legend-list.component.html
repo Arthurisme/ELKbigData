@@ -10,9 +10,12 @@
     <button class="btn btn-success" (click)="goNextPage()">Next Page</button>
   </div>
 </div>
+<div class="row">
+  <h4 class="text-center" >Page {{pageCurrent+1}}</h4>
+</div>
 <hr>
 
-<h4>Select a date:</h4>
+<h6>Select a date:</h6>
 <mat-form-field class="example-full-width">
   <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="Choose a date"
          (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
@@ -24,7 +27,7 @@
   <div *ngFor="let e of events">{{e}}</div>
 </div>
 
-<h4>Select a range:</h4>
+<h6>Select a range:</h6>
 <mat-form-field>
   <mat-label>Range since above date</mat-label>
   <mat-select  (selectionChange)="onSelectRange($event)" >

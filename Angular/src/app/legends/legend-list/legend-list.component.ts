@@ -192,7 +192,12 @@ export class LegendListComponent implements OnInit, OnDestroy {
   }
 
   goNextPage(){
-    this.dataStorageService.fetchLegends(this.startDate, this.endDate, this.pageCurrent + 1).subscribe();
+    this.dataStorageService.fetchLegends(this.startDate, this.endDate, this.pageCurrent + 1).subscribe(legends =>  {
+      // Todo: validation the return data
+      this.pageCurrent++;
+      console.log('legends call back by go next page', legends);
+
+    });
   }
 
   ngOnDestroy() {
