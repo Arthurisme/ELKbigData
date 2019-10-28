@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map, tap} from 'rxjs/operators';
 
-import {Recipe} from '../recipes/recipe.model';
-import {RecipeService} from '../recipes/recipe.service';
+import {Legend} from '../Legends/Legend.model';
+import {LegendService} from '../Legends/Legend.service';
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService {
-  constructor(private http: HttpClient, private recipeService: RecipeService) {
+  constructor(private http: HttpClient, private LegendService: LegendService) {
 
   }
 
@@ -29,19 +29,19 @@ export class DataStorageService {
   };
 
 
-  storeRecipes() {
-    const recipes = this.recipeService.getRecipes();
+  storeLegends() {
+    const Legends = this.LegendService.getLegends();
     this.http
       .put(
-        'https://ng-course-recipe-book-65f10.firebaseio.com/recipes.json',
-        recipes
+        'https://ng-course-Legend-book-65f10.firebaseio.com/Legends.json',
+        Legends
       )
       .subscribe(response => {
         console.log(response);
       });
   }
 
-  fetchRecipes(startDate: string, endDate: string, pageNumber?: number) {
+  fetchLegends(startDate: string, endDate: string, pageNumber?: number) {
 
     if(startDate === undefined || endDate === undefined){
       return ;
@@ -66,37 +66,37 @@ export class DataStorageService {
 
 
     return this.http
-      .get<Recipe[]>(urlString)
+      .get<Legend[]>(urlString)
       .pipe(
-        map(recipes => {
-          console.log('data:', recipes);
-          return recipes.map(recipe => {
+        map(Legends => {
+          console.log('data:', Legends);
+          return Legends.map(Legend => {
             return {
-              ...recipe,
-              ingredients: recipe.ingredients ? recipe.ingredients : []
+              ...Legend,
+              ingredients: Legend.ingredients ? Legend.ingredients : []
             };
           });
         }),
-        tap(recipes => {
-          this.recipeService.setRecipes(recipes);
+        tap(Legends => {
+          this.LegendService.setLegends(Legends);
         })
       );
   }
 
-  fetchRecipe(uuid: string) {
+  fetchLegend(uuid: string) {
 
 
     return this.http
-      .get<Recipe>(
+      .get<Legend>(
         'http://localhost:8001/api/legend/v1/legends/' + uuid
       )
       .pipe(
-        map(recipe => {
-          console.log('data:', recipe);
-          return recipe;
+        map(Legend => {
+          console.log('data:', Legend);
+          return Legend;
         }),
-        tap(recipe => {
-          this.recipeService.setRecipe(recipe);
+        tap(Legend => {
+          this.LegendService.setLegend(Legend);
         })
       );
   }

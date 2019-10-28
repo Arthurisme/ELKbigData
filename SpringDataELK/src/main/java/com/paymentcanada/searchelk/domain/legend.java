@@ -14,8 +14,8 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-//@Document(indexName = "legend2", type = "legend2")
-@Document(indexName = "cp101", type = "doc")
+@Document(indexName = "legend6", type = "doc")
+//@Document(indexName = "cp101", type = "doc")
 public class legend {
 
 

@@ -5,25 +5,25 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 
-import { Recipe } from './recipe.model';
+import { Legend } from './Legend.model';
 import { DataStorageService } from '../shared/data-storage.service';
-import { RecipeService } from './recipe.service';
+import { LegendService } from './Legend.service';
 
 @Injectable({ providedIn: 'root' })
-export class RecipesResolverService implements Resolve<Recipe[]> {
+export class LegendsResolverService implements Resolve<Legend[]> {
   constructor(
     private dataStorageService: DataStorageService,
-    private recipesService: RecipeService
+    private LegendsService: LegendService
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const recipes = this.recipesService.getRecipes();
+    const Legends = this.LegendsService.getLegends();
 
-    if (recipes.length === 0) {
+    if (Legends.length === 0) {
      // todo: emit the datepicker value to here for use.
-      // return this.dataStorageService.fetchRecipes();
+      // return this.dataStorageService.fetchLegends();
     } else {
-      return recipes;
+      return Legends;
     }
   }
 }

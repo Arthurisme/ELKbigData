@@ -1,6 +1,6 @@
 import { Ingredient } from '../shared/ingredient.model';
 
-export class Recipe {
+export class Legend {
   public type: string;
   public size: string;
   public uuid: string;

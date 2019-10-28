@@ -1,0 +1,21 @@
+<a
+  style="cursor: pointer;"
+  [routerLink]="[Legend.uuid]"
+  routerLinkActive="active"
+  class="list-group-item clearfix">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">Type: {{ Legend.type }}</h4>
+    <p class="list-group-item-heading">Summary: {{ Legend.summary }}</p>
+    <p class="list-group-item-heading">Event Date:{{ Legend.eventdate }}</p>
+    <p class="list-group-item-heading">Size: {{ Legend.size }}</p>
+    <p class="list-group-item-heading">UUID: {{ Legend.uuid }}</p>
+    <a routerLink="/Legends/{{2}}" >  Click to see Detail  </a>
+  </div>
+  <span class="pull-right">
+        <img
+          [src]="Legend.imagePath"
+          alt="{{ Legend.name }}"
+          class="img-responsive"
+          style="max-height: 50px;">
+      </span>
+</a>

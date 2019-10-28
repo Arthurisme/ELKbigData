@@ -6,8 +6,8 @@ import {FormControl} from '@angular/forms';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatOption} from '@angular/material/core';
 
-import { Recipe } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
+import { Legend } from '../Legend.model';
+import { LegendService } from '../Legend.service';
 
 
 // Depending on whether rollup is used, moment needs to be imported differently.
@@ -36,23 +36,23 @@ export interface Range {
 
 
 @Component({
-  selector: 'app-recipe-list',
-  templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.css'],
+  selector: 'app-Legend-list',
+  templateUrl: './Legend-list.component.html',
+  styleUrls: ['./Legend-list.component.css'],
   providers: [
     // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
     // application's root module. We provide it at the component level here, due to limitations of
     // our example generation script.
   ],
 })
-export class RecipeListComponent implements OnInit, OnDestroy {
+export class LegendListComponent implements OnInit, OnDestroy {
 
-  constructor(private recipeService: RecipeService,
+  constructor(private LegendService: LegendService,
               private router: Router,
               private dataStorageService: DataStorageService,
               private route: ActivatedRoute) {
   }
-  recipes: Recipe[];
+  Legends: Legend[];
   subscription: Subscription;
   events: string[] = [];
   startDateTime
@@ -95,16 +95,16 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.recipeService.recipesChanged
+    this.subscription = this.LegendService.LegendsChanged
       .subscribe(
-        (recipes: Recipe[]) => {
-          this.recipes = recipes;
+        (Legends: Legend[]) => {
+          this.Legends = Legends;
         }
       );
-    this.recipes = this.recipeService.getRecipes();
+    this.Legends = this.LegendService.getLegends();
   }
 
-  onNewRecipe() {
+  onNewLegend() {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
@@ -182,17 +182,17 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     console.log('onSelectRange:endDateTime', endDatef);
 
 
-    this.dataStorageService.fetchRecipes(startDatef, endDatef).subscribe();
+    this.dataStorageService.fetchLegends(startDatef, endDatef).subscribe();
   }
   goPreviousPage(){
     if(this.pageCurrent >=1){
-      this.dataStorageService.fetchRecipes(this.startDate, this.endDate, this.pageCurrent - 1).subscribe();
+      this.dataStorageService.fetchLegends(this.startDate, this.endDate, this.pageCurrent - 1).subscribe();
     }
 
   }
 
   goNextPage(){
-    this.dataStorageService.fetchRecipes(this.startDate, this.endDate, this.pageCurrent + 1).subscribe();
+    this.dataStorageService.fetchLegends(this.startDate, this.endDate, this.pageCurrent + 1).subscribe();
   }
 
   ngOnDestroy() {

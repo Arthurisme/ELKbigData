@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RecipesComponent } from './recipes/recipes.component';
+import { LegendsComponent } from './Legends/Legends.component';
 
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipesResolverService } from './recipes/recipes-resolver.service';
+import { LegendStartComponent } from './Legends/Legend-start/Legend-start.component';
+import { LegendDetailComponent } from './Legends/Legend-detail/Legend-detail.component';
+import { LegendsResolverService } from './Legends/Legends-resolver.service';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  { path: '', redirectTo: '/Legends', pathMatch: 'full' },
   {
-    path: 'recipes',
-    component: RecipesComponent,
+    path: 'Legends',
+    component: LegendsComponent,
     children: [
-      { path: '', component: RecipeStartComponent },
+      { path: '', component: LegendStartComponent },
       {
         path: ':id',
-        component: RecipeDetailComponent,
-        resolve: [RecipesResolverService]
+        component: LegendDetailComponent,
+        resolve: [LegendsResolverService]
       }
     ]
   },
