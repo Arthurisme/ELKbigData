@@ -14,7 +14,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+
 import { RecipeService } from './recipes/recipe.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material';
@@ -30,8 +30,7 @@ import { MaterialModule } from '../material-module';
     RecipeItemComponent,
 
     DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent
+    RecipeStartComponent
   ],
   imports: [
     BrowserModule,

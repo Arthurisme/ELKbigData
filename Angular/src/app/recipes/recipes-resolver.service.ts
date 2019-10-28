@@ -20,7 +20,8 @@ export class RecipesResolverService implements Resolve<Recipe[]> {
     const recipes = this.recipesService.getRecipes();
 
     if (recipes.length === 0) {
-      return this.dataStorageService.fetchRecipes();
+     // todo: emit the datepicker value to here for use.
+      // return this.dataStorageService.fetchRecipes();
     } else {
       return recipes;
     }
