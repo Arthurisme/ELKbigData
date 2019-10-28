@@ -5,41 +5,43 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+import { LegendsComponent } from './legends/legends.component';
+import { LegendListComponent } from './legends/legend-list/legend-list.component';
+import { LegendDetailComponent } from './legends/legend-detail/legend-detail.component';
+import { LegendItemComponent } from './legends/legend-list/legend-item/legend-item.component';
+
 import { DropdownDirective } from './shared/dropdown.directive';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
+
 import { AppRoutingModule } from './app-routing.module';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { RecipeService } from './recipes/recipe.service';
+import { LegendStartComponent } from './legends/legend-start/legend-start.component';
+
+import { LegendService } from './legends/legend.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material';
+import { MaterialModule } from '../material-module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
+    LegendsComponent,
+    LegendListComponent,
+    LegendDetailComponent,
+    LegendItemComponent,
+
     DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent
+    LegendStartComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ LegendService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,0 +1,62 @@
+
+
+
+
+input {
+    stdin {
+        codec => json
+}
+    http{
+        host => "127.0.0.1"
+        port => 8080
+}
+    file{
+        path => "/home/data/conf/file/json/assignment_data_full_removen1.json"
+        start_position => "beginning"
+        codec => json
+        sincedb_path => "/dev/null"
+}
+}
+
+
+
+filter {
+
+   uuid {
+        target => "uuid"
+      }
+
+    mutate {
+        rename => {
+                "event_date" =>   "eventdate"
+                "event_type" =>     "type"
+                "event_summary" =>  "summary"
+                "event_size" =>   "size"
+                "event_details" =>   "details"
+                "Event_metric" =>   "metric"
+                }
+    }
+}
+
+
+
+
+
+
+output {
+
+    elasticsearch {
+                hosts => "localhost:9200"
+                index => "cp9"
+ }
+
+    stdout {
+        codec => rubydebug
+}
+
+    file{
+        path => "/home/arthur/conf/file/json/out.txt"
+}
+
+
+}

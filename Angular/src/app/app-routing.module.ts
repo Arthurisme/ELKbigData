@@ -1,34 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RecipesComponent } from './recipes/recipes.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { RecipesResolverService } from './recipes/recipes-resolver.service';
+import { LegendsComponent } from './legends/legends.component';
+
+import { LegendStartComponent } from './legends/legend-start/legend-start.component';
+import { LegendDetailComponent } from './legends/legend-detail/legend-detail.component';
+import { LegendsResolverService } from './legends/legends-resolver.service';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  { path: '', redirectTo: '/legends', pathMatch: 'full' },
   {
-    path: 'recipes',
-    component: RecipesComponent,
+    path: 'legends',
+    component: LegendsComponent,
     children: [
-      { path: '', component: RecipeStartComponent },
-      { path: 'new', component: RecipeEditComponent },
+      { path: '', component: LegendStartComponent },
       {
         path: ':id',
-        component: RecipeDetailComponent,
-        resolve: [RecipesResolverService]
-      },
-      {
-        path: ':id/edit',
-        component: RecipeEditComponent,
-        resolve: [RecipesResolverService]
+        component: LegendDetailComponent,
+        resolve: [LegendsResolverService]
       }
     ]
   },
-  { path: 'shopping-list', component: ShoppingListComponent }
+
 ];
 
 @NgModule({
