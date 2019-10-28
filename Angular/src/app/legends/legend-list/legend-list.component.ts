@@ -98,7 +98,7 @@ export class LegendListComponent implements OnInit, OnDestroy {
     this.subscription = this.legendService.LegendsChanged
       .subscribe(
         (legends: Legend[]) => {
-          this.legends = Legends;
+          this.legends = legends;
         }
       );
     this.legends = this.legendService.getLegends();
