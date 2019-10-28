@@ -8,7 +8,13 @@
 Elasticserch is good for index and search big Json data, both for json file and json stream.  
 
 ## Tool Requiement   
-Node v12+ npm v6+ Java v11+ Angular cli v7+ Gradle build tool v3+ Docker v1.3+  
+Node v10.9.0+  
+npm 6.1+  
+Java v11+  
+Angular cli v7+  
+Gradle 3.0+  
+Docker Version:      1.7.0 +  
+Docker API version:  1.10 +  
 
 ##  How to use:  
 ### 1, Set up the ELK and load the json data:  
