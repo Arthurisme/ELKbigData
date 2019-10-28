@@ -95,7 +95,7 @@ export class LegendListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.legendService.LegendsChanged
+    this.subscription = this.legendService.legendsChanged
       .subscribe(
         (legends: Legend[]) => {
           this.legends = legends;
