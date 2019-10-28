@@ -36,7 +36,7 @@ export class LegendDetailComponent implements OnInit {
         }
       );
 
-    this.subscription = this.legendService.legendChanged
+    this.subscription = this.legendService.legendChanged()
       .subscribe(
         (legend) => {
           this.legend = legend;
