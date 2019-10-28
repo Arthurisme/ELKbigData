@@ -20,7 +20,8 @@ docker run -p 5601:5601 -p 9200:9200 -p 9300:9300 -p 5044:5044 -it --name elk ar
 
 The json big file in the directory: /home/data/conf/file/json/  
 
-Configure the Logstash configure file with command:sudo  nano /home/data/conf/file/json/hello-world.conf  
+Configure the Logstash configure file with command: 
+sudo  nano /home/data/conf/file/json/hello-world.conf  
 
 Start Logstash and load json file to Elasticsearch data base:  
  /opt/logstash/bin/logstash -f '/home/data/conf/file/json/hello-world.conf'
