@@ -30,7 +30,7 @@ export class DataStorageService {
 
 
   storeLegends() {
-    const legends = this.legendService.getlegends();
+    const legends = this.legendService.getLegends();
     this.http
       .put(
         'https://ng-course-legend-book-65f10.firebaseio.com/legends.json',

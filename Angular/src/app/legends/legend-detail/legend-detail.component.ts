@@ -16,7 +16,7 @@ export class LegendDetailComponent implements OnInit {
   subscription: Subscription;
   id: string;
 
-  constructor(private LegendService: legendService,
+  constructor(private legendService: LegendService,
               private route: ActivatedRoute,
               private dataStorageService: DataStorageService,
               private router: Router) {

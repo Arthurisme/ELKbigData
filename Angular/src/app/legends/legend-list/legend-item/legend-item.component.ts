@@ -1,14 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Legend } from '../../Legend.model';
+import { Legend } from '../../legend.model';
 
 @Component({
-  selector: 'app-Legend-item',
-  templateUrl: './Legend-item.component.html',
-  styleUrls: ['./Legend-item.component.css']
+  selector: 'app-legend-item',
+  templateUrl: './legend-item.component.html',
+  styleUrls: ['./legend-item.component.css']
 })
 export class LegendItemComponent implements OnInit {
-  @Input() Legend: Legend;
+  @Input() legend: Legend;
   @Input() index: number;
 
   ngOnInit() {
