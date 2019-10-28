@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LegendsComponent } from './Legends/Legends.component';
+import { LegendsComponent } from './legends/legends.component';
 
-import { LegendStartComponent } from './Legends/Legend-start/Legend-start.component';
-import { LegendDetailComponent } from './Legends/Legend-detail/Legend-detail.component';
-import { LegendsResolverService } from './Legends/Legends-resolver.service';
+import { LegendStartComponent } from './legends/legend-start/legend-start.component';
+import { LegendDetailComponent } from './legends/legend-detail/legend-detail.component';
+import { LegendsResolverService } from './legends/legends-resolver.service';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/Legends', pathMatch: 'full' },
+  { path: '', redirectTo: '/legends', pathMatch: 'full' },
   {
-    path: 'Legends',
+    path: 'legends',
     component: LegendsComponent,
     children: [
       { path: '', component: LegendStartComponent },
