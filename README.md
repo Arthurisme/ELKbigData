@@ -6,6 +6,7 @@
 ###  Search big Json file use Spring data Elasticserch, Logstash, kibana and Angular.  
 
 Elasticserch is good for index and search big Json data, both for json file and json stream.  
+This is a basical structure demo for Search big Json file.
 
 ## Tool Requiement   
 Node v12+ npm v6+ Java v11+ Angular cli v7+ Gradle build tool v3+ Docker v1.3+  
@@ -39,3 +40,5 @@ Go to Angular source directory
 npm install
 ng serve  
 
+
+This is a basical structure demo for Search big Json file. For commercial consultant about big data project , please contact me.
