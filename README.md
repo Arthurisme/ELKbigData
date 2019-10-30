@@ -17,7 +17,11 @@ Pull my ELK docker image with json file in it : arthurisme/arthur_elk:v1.0.6
 Run ELK docker:   
 docker run -p 5601:5601 -p 9200:9200 -p 9300:9300 -p 5044:5044 -it --name elk arthurisme/arthur_elk:v1.0.6  
 
-The json big file in the directory: /home/data/conf/file/json/  
+There are some big json file already in the docker image: in the directory: /home/data/conf/file/json/  
+You can copy your big json file into docker image by command: 
+docker cp (file or folder path you file in your machine)  (container name):(Path in container)
+Such as:
+docker cp C:\Users\ArthurLiu\Documents\config  b5b82faf5cba:/home/data
 
 Configure the Logstash configure file with command:   
 sudo nano /home/data/conf/file/json/hello-world.conf    
