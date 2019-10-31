@@ -1,9 +1,9 @@
 
 #  Please use the lastest branch, don't use the master branch.
 
-#  JsonSearchELK
+#  ELKbigData
 
-###  Search big Json file use Spring data Elasticserch, Logstash, kibana and Angular.  
+###  Search big Json file and Json stream use Spring data Elasticserch, Logstash, kibana and Angular.  
 
 Elasticserch is good for index and search big Json data, both for json file and json stream.  
 This is a basical structure demo for Search big Json file.
