@@ -17,7 +17,7 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 @EnableElasticsearchRepositories(basePackages = { "com.paymentcanada.searchelk.repository" })
 public class ElasticsearchConfig {
 
-	private static final String esHost = "3.231.38.61";
+	private static final String esHost = "99.79.120.117";
 	private static final int esPort = 9300;
 
 	@Bean

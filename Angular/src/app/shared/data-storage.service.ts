@@ -58,11 +58,11 @@ export class DataStorageService {
 
     if (pageNumber === null || pageNumber === undefined) {
       //urlString = 'http://localhost:8001/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate;
-      urlString = 'http://3.231.38.61:8080/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate;
+      urlString = 'http://99.79.120.117:8081/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate;
 
     } else {
       //urlString = 'http://localhost:8001/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate + '&page=' + pageNumber + '&size=25';
-      urlString = 'http://3.231.38.61:8080/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate + '&page=' + pageNumber + '&size=25';
+      urlString = 'http://99.79.120.117:8081/api/legend/v1/legends/datebetween?startdate=' + startDate + '&enddate=' + endDate + '&page=' + pageNumber + '&size=25';
     }
     console.log('urlString:', urlString);
 
@@ -90,7 +90,7 @@ export class DataStorageService {
     return this.http
       .get<Legend>(
        // 'http://localhost:8001/api/legend/v1/legends/' + uuid
-    'http://3.231.38.61:8080/api/legend/v1/legends/' + uuid
+    'http://99.79.120.117:8081/api/legend/v1/legends/' + uuid
       )
       .pipe(
         map(legend => {
